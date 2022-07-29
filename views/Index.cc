@@ -19,15 +19,9 @@ std::string Index::genText(const DrTemplateData& Index_view_data)
 	std::string layoutName{""};
 	Index_tmp_stream << "<!DOCTYPE html>\n";
 	Index_tmp_stream << "<html>\n";
-Index_tmp_stream<<"\n";
     auto para=Index_view_data.get<std::unordered_map<std::string,std::string>>("parameters");
-Index_tmp_stream<<"\n";
 	Index_tmp_stream << "<head>\n";
 	Index_tmp_stream << "    <meta charset=\"UTF-8\">\n";
-	Index_tmp_stream << "    <link rel=\"stylesheet\" href=\"/reset.css\" />\n";
-	Index_tmp_stream << "    <link rel=\"stylesheet\" href=\"/index.css\" />\n";
-	Index_tmp_stream << "    <script defer src=\"/script.js\"></script>\n";
-	Index_tmp_stream << "    <!--Drogon is rendering title dynamically-->\n";
 	Index_tmp_stream << "    <title>";
 {
     auto & val=Index_view_data["title"];
@@ -39,30 +33,10 @@ Index_tmp_stream<<"\n";
 }
 	Index_tmp_stream << "</title>\n";
 	Index_tmp_stream << "</head>\n";
-Index_tmp_stream<<"\n";
 	Index_tmp_stream << "<body>\n";
-	Index_tmp_stream << "    <h1>";
-{
-    auto & val=Index_view_data["title"];
-    if(val.type()==typeid(const char *)){
-        Index_tmp_stream<<*any_cast<const char *>(&val);
-    }else if(val.type()==typeid(std::string)||val.type()==typeid(const std::string)){
-        Index_tmp_stream<<*any_cast<const std::string>(&val);
-    }
-}
-	Index_tmp_stream << " </h1>\n";
-Index_tmp_stream<<"\n";
-	Index_tmp_stream << "    <h3>Story Index</h3>\n";
-	Index_tmp_stream << "        <ul> </ul>\n";
-	Index_tmp_stream << "    <h3>Create New Story</h3>\n";
-Index_tmp_stream<<"\n";
-	Index_tmp_stream << "    <h3>Edit Existing Story</h3>\n";
-Index_tmp_stream<<"\n";
 	Index_tmp_stream << "    ";
  if(para.size()>0){
-Index_tmp_stream<<"\n";
 	Index_tmp_stream << "    <H1>Parameters</H1>\n";
-Index_tmp_stream<<"\n";
 	Index_tmp_stream << "    <table border=\"1\">\n";
 	Index_tmp_stream << "      <tr>\n";
 	Index_tmp_stream << "        <th>name</th>\n";
@@ -81,13 +55,11 @@ Index_tmp_stream<<iter.first;
 	Index_tmp_stream << "      ";
 }
 	Index_tmp_stream << "    </table>\n";
-Index_tmp_stream<<"\n";
 	Index_tmp_stream << "    ";
  }else{
 	Index_tmp_stream << "    <H1>no parameter</H1>\n";
 	Index_tmp_stream << "    ";
 }
-Index_tmp_stream<<"\n";
 	Index_tmp_stream << "</body>\n";
 	Index_tmp_stream << "</html>\n";
 if(layoutName.empty())

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<%c++
+    auto para=@@.get<std::unordered_map<std::string,std::string>>("parameters");
+%>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/index.css" />
+    <script defer src="/script.js"></script>
+    <!--Drogon is rendering title dynamically-->
+    <title>[[ title ]]</title>
+</head>
+
+<body>
+    <h1>[[ title ]] </h1>
+
+    <h3>Story Index</h3>
+        <ul> </ul>
+    <h3>Create New Story</h3>
+
+    <h3>Edit Existing Story</h3>
+
+    <%c++ if(para.size()>0){%>
+
+    <H1>Parameters</H1>
+
+    <table border="1">
+      <tr>
+        <th>name</th>
+        <th>value</th>
+      </tr>
+      <%c++ for(auto iter:para){%>
+      <tr>
+        <td>{%iter.first%}</td>
+        <td><%c++ $$<<iter.second;%></td>
+      </tr>
+      <%c++}%>
+    </table>
+
+    <%c++ }else{%>
+    <H1>no parameter</H1>
+    <%c++}%>
+
+</body>
+</html>
