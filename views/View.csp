@@ -14,12 +14,12 @@
 </head>
 
 <body>
-    <h1><a href="/">[[ title ]]<a></h1>
+    <h1>[[ title ]] </h1>
 
     <h3>Story Index</h3>
         <!--Add stories loading...-->
         <ul> </ul>
-    <h3><a href="/create">Create New Story</a></h3>
+    <h3><a href="/createstory">Create New Story</a></h3>
 
     <h3><a href="/editstory">Edit Existing Story</a></h3>
     
