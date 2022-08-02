@@ -17,8 +17,7 @@ void User::read(const HttpRequestPtr &req,
 }
 
 void User::create(const HttpRequestPtr &req,
-                  std::function<void(const HttpResponsePtr &)> &&callback,
-                  std::string storyId)
+                  std::function<void(const HttpResponsePtr &)> &&callback)
 
 {
     auto para = req->getParameters();
@@ -29,16 +28,16 @@ void User::create(const HttpRequestPtr &req,
     callback(resp);
 }
 
-void User::addStory(const HttpRequestPtr &req,
-                    std::function<void(const HttpResponsePtr &)> &&callback,
-                    std::string storyId)
+void User::update(const HttpRequestPtr &req,
+                  std::function<void(const HttpResponsePtr &)> &&callback,
+                  std::string &&storyId)
 
 {
     auto para = req->getParameters();
     HttpViewData data;
-    data.insert("title", "addStory");
+    data.insert("title", "update");
     data.insert("parameters", para);
-    auto resp = HttpResponse::newHttpViewResponse("Create.csp", data);
+    auto resp = HttpResponse::newHttpViewResponse("Edit.csp", data);
     callback(resp);
 }
 
@@ -56,14 +55,13 @@ void User::edit(const HttpRequestPtr &req,
 }
 
 void User::home(const HttpRequestPtr &req,
-                std::function<void(const HttpResponsePtr &)> &&callback,
-                std::string &&index)
+                std::function<void(const HttpResponsePtr &)> &&callback)
 
 {
     auto para = req->getParameters();
     HttpViewData data;
     data.insert("title", "home");
     data.insert("parameters", para);
-    auto resp = HttpResponse::newHttpViewResponse("Home.csp", data);
+    auto resp = HttpResponse::newHttpViewResponse("Index.csp", data);
     callback(resp);
 }

@@ -14,11 +14,11 @@ namespace dearreader
     // METHOD_ADD(User::get, "/{2}/{1}", Get); // path is /dear-reader/User/{arg2}/{arg1}
     // METHOD_ADD(User::your_method_name, "/{1}/{2}/list", Get); // path is /dear-reader/User/{arg1}/{arg2}/list
     // ADD_METHOD_TO(User::your_method_name, "/absolute/path/{1}/{2}/list", Get); // path is /absolute/path/{arg1}/{arg2}/list
-    METHOD_ADD(User::read, "/story?storyId={1}", Get);
-    METHOD_ADD(User::create, "/create", Get);
-    METHOD_ADD(User::addStory, "/addStory", Post);
-    METHOD_ADD(User::edit, "/edit?storyId={1}", Patch);
-    METHOD_ADD(User::home, "/", Get);
+    ADD_METHOD_TO(User::read, "/story?storyId={1}", Get);
+    ADD_METHOD_TO(User::create, "/create", Get);
+    ADD_METHOD_TO(User::update, "/update", Get);
+    ADD_METHOD_TO(User::edit, "/edit?storyId={1}", Patch);
+    ADD_METHOD_TO(User::home, "/", Get);
 
     METHOD_LIST_END
     // your declaration of processing function maybe like this:
@@ -29,19 +29,19 @@ namespace dearreader
               std::string &&storyId);
 
     void create(const HttpRequestPtr &req,
-                std::function<void(const HttpResponsePtr &)> &&callback,
-                std::string storyId);
+                std::function<void(const HttpResponsePtr &)> &&callback);
 
-    void addStory(const HttpRequestPtr &req,
-                  std::function<void(const HttpResponsePtr &)> &&callback,
-                  std::string storyId);
+
+
+    void update(const HttpRequestPtr &req,
+                std::function<void(const HttpResponsePtr &)> &&callback,
+                std::string &&storyId);
 
     void edit(const HttpRequestPtr &req,
               std::function<void(const HttpResponsePtr &)> &&callback,
               std::string &&storyId);
 
     void home(const HttpRequestPtr &req,
-              std::function<void(const HttpResponsePtr &)> &&callback,
-              std::string &&index);
+              std::function<void(const HttpResponsePtr &)> &&callback);
   };
 }
