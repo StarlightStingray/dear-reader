@@ -4,9 +4,14 @@ https://dear-reader.herokuapp.com/
 
 ## How to Build
 
-cd build
+<!-- cd build
 cmake ..
-make
+make -->
+
+Using docker build
+
+docker build . -t dearreader:latest
+docker run -e PORT=8000 -p 8000:8000 -d dearreader:latest
 
 <!-- the next step may be necessary if the app is having trouble running correctly when running ./dear-reader -->
 
