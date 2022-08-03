@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<%inc#include "../controllers/Story.h" %>
+
+<%c++
+    auto para=@@.get<std::unordered_map<std::string,std::string>>("parameters");
+    auto stories=@@.get<std::vector<dearreader::StoryTitle>>("stories");
+%>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="/index.css" />
+    <!--Drogon is rendering title dynamically-->
+    <title>[[ title ]]</title>
+</head>
+
+<body>
+    <h1><a href="/">[[ title ]]<a></h1>
+
+    <h3>Story Index</h3>
+        <li>
+            <%c++ for (auto iter:stories) {%> 
+                <ul><a href="story?storyId={% iter.id %}&chapter=0">{% iter.title %}</a></ul>
+            <%c++}%>
+        </li>
+    <h3><a href="/create">Create New Story</a></h3>
+
+    <h3><a href="/editstory">Edit Existing Story</a></h3>
+    
+</body>
+</html>

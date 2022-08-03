@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<%c++
+    auto para=@@.get<std::unordered_map<std::string,std::string>>("parameters");
+%>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="/index.css" />
+    <script defer src="/createPageScript.js"></script>
+    <title>[[ title ]]</title>
+</head>
+<body>
+    <h1><a href="/">[[ title ]]</a></h1>
+
+    <form action="/addStory" method="post" id="storyForm">
+        <label for="storytitle">Story Title</label>
+        <input type="text" name="storytitle">
+        </textarea>
+        <div id="chapters"></div>
+        <a href="#" id="addChapter" onClick="addFields()">Add chapter</a>
+        <input type="submit" value="Submit" id="">
+    </form> 
+</body>
+</html>

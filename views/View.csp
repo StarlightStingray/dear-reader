@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<%inc#include "../controllers/Story.h" %>
+<%c++
+    auto para=@@.get<std::unordered_map<std::string,std::string>>("parameters");
+    dearreader::Story story=@@.get<dearreader::Story>("story");
+%>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <link rel="stylesheet" href="/index.css" />
+    <!--Drogon is rendering title dynamically-->
+    <title>[[ title ]]</title>
+</head>
+
+<body style="background-image: url('{%story.images[0]%}');">
+    <h1>[[ story.storyTitle ]] </h1>
+    <h2>{% story.titles[0] %}</h2>
+    <p>{% story.chapter_text[0] %}</p>
+    <a href={%std::snprintf(nullptr, 0, "/storyId=%s&chapter=%d", para["storyId"].c_str(), std::max(stoi(para["chapter"])-1, 0))%}>Previous Chapter</a>
+    <a href={%std::snprintf(nullptr, 0, "/storyId=%s&chapter=%d", para["storyId"].c_str(), std::min(stoi(para["chapter"])+1, (int)story.titles.size()))%}>Next Chapter</a>
+</body>
+</html>
